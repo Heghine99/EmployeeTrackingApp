@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { EmployeesState } from "./types";
+import { getDefaultLocale } from "@/src/localize";
 
 const initialState: EmployeesState = {
   employees: [
@@ -16,10 +17,11 @@ const initialState: EmployeesState = {
           data: [
             {
               id: 20,
+              date: "29 ноября",
               time: "08:00 - 09:00",
               route: [
-                { lat: 55.7512, lng: 37.6184 },
-                { lat: 55.7601, lng: 37.6202 },
+                { latitude: 55.7512, longitude: 37.6184 },
+                { latitude: 55.7601, longitude: 37.6202 },
               ],
               duration: "1 час",
               distance: "5 км",
@@ -42,10 +44,11 @@ const initialState: EmployeesState = {
           data: [
             {
               id: 25,
+              date: "30 ноября",
               time: "09:00 - 10:00",
               route: [
-                { lat: 55.7624, lng: 37.6175 },
-                { lat: 55.77, lng: 37.625 },
+                { latitude: 55.7624, longitude: 37.6175 },
+                { latitude: 55.77, longitude: 37.625 },
               ],
               duration: "1 час",
               distance: "4.5 км",
@@ -68,10 +71,11 @@ const initialState: EmployeesState = {
           data: [
             {
               id: 28,
+              date: "2 декабря",
               time: "10:00 - 11:00",
               route: [
-                { lat: 55.749, lng: 37.607 },
-                { lat: 55.758, lng: 37.616 },
+                { latitude: 55.749, longitude: 37.607 },
+                { latitude: 55.758, longitude: 37.616 },
               ],
               duration: "1 час",
               distance: "6 км",
@@ -85,10 +89,11 @@ const initialState: EmployeesState = {
           data: [
             {
               id: 29,
+              date: "2 декабря",
               time: "10:00 - 19:00",
               route: [
-                { lat: 55.749, lng: 37.607 },
-                { lat: 55.758, lng: 37.616 },
+                { latitude: 55.749, longitude: 37.607 },
+                { latitude: 55.758, longitude: 37.616 },
               ],
               duration: "1 час",
               distance: "6 км",
@@ -102,10 +107,11 @@ const initialState: EmployeesState = {
           data: [
             {
               id: 21,
+              date: "3 декабря",
               time: "10:00 - 13:00",
               route: [
-                { lat: 55.749, lng: 37.607 },
-                { lat: 55.758, lng: 37.616 },
+                { latitude: 55.7512, longitude: 37.6184 },
+                { latitude: 55.7601, longitude: 37.6202 },
               ],
               duration: "1 час",
               distance: "6 км",
@@ -113,10 +119,11 @@ const initialState: EmployeesState = {
             },
             {
               id: 22,
+              date: "3 декабря",
               time: "10:00 - 15:00",
               route: [
-                { lat: 55.749, lng: 37.607 },
-                { lat: 55.758, lng: 37.616 },
+                { latitude: 55.749, longitude: 37.607 },
+                { latitude: 55.758, longitude: 37.616 },
               ],
               duration: "1 час",
               distance: "500 м",
@@ -128,6 +135,8 @@ const initialState: EmployeesState = {
     },
   ],
   selectedEmployee: null,
+  resetFilter: false,
+  lang: getDefaultLocale(),
 };
 
 export const employeesSlice = createSlice({
@@ -139,9 +148,46 @@ export const employeesSlice = createSlice({
         state.employees.find((employee) => employee.id === action.payload) ||
         null;
     },
+    filterEmployees(
+      state,
+      action: PayloadAction<{
+        name?: string;
+        position?: string;
+        phone?: string;
+      }>
+    ) {
+      const { name, position, phone } = action.payload;
+
+      state.employees = initialState.employees.filter((employee) => {
+        const matchesName = name
+          ? employee.name.toLowerCase().includes(name.toLowerCase())
+          : true;
+        const matchesPosition = position
+          ? employee.position.toLowerCase().includes(position.toLowerCase())
+          : true;
+        const matchesPhone = phone ? employee.phone.includes(phone) : true;
+
+        if (matchesName && matchesPosition && matchesPhone) {
+          state.resetFilter = true;
+          return true;
+        }
+      });
+    },
+    resetFilters(state) {
+      state.employees = initialState.employees;
+      state.resetFilter = false;
+    },
+    setAppLang(state, { payload }) {
+      state.lang = payload;
+    },
   },
 });
 
-export const { setSelectedEmployee } = employeesSlice.actions;
+export const {
+  setSelectedEmployee,
+  filterEmployees,
+  resetFilters,
+  setAppLang,
+} = employeesSlice.actions;
 
 export default employeesSlice.reducer;

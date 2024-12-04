@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { employeesSelector } from "@/src/store/slices/selectors";
 import { styles } from "./styles";
 import { useNavigation } from "expo-router";
+import { t } from "i18n-js";
 
 export const EmployeeDetailScreen: React.FC = () => {
   const { selectedEmployee } = useSelector(employeesSelector);
@@ -34,7 +35,7 @@ export const EmployeeDetailScreen: React.FC = () => {
     <MainContainer
       withHeader
       widthGoBack
-      title={`Передвижения ${selectedEmployee?.name}`}
+      title={`${t("header.movements")} ${selectedEmployee?.name}`}
     >
       {selectedEmployee?.tracks.length === 0 ? (
         <AppText>No tracks available for this employee.</AppText>

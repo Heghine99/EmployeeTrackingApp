@@ -1,33 +1,49 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useCallback, useState } from "react";
-import { View, StyleSheet, Button, Pressable } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Button,
+  Pressable,
+  TextInput,
+  Modal,
+} from "react-native";
 import { theme } from "../../styles";
 import { AppText } from "@/src/uiKit/AppText";
 import SettingsIcon from "@/src/view/assets/icons/settings.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { changeType } from "@/src/store/slices/mapSlice";
-import { mapListSelector } from "@/src/store/slices/selectors";
+import {
+  employeesSelector,
+  mapListSelector,
+} from "@/src/store/slices/selectors";
 import { styles } from "./styles";
 import GoBackIcon from "@/src/view/assets/icons/goBack.svg";
+import { t } from "i18n-js";
 
 interface HeaderProps {
   widthGoBack?: boolean;
   handleGoBack?: () => void;
+  handleApplyFilters?: () => void;
+  handleSettings?: () => void;
   title?: string;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   widthGoBack,
   handleGoBack,
+  handleApplyFilters,
+  handleSettings,
   title,
 }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { isActiveButton } = useSelector(mapListSelector);
+  const { resetFilter } = useSelector(employeesSelector);
 
-  const openSettings = useCallback(() => {
-    navigation.navigate("Settings");
-  }, [navigation]);
+  // const openSettings = useCallback(() => {
+  //   navigation.navigate("Settings", { screen: "SettingsScreen" });
+  // }, [navigation]);
 
   return (
     <>
@@ -58,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }
                   variant="p1"
                 >
-                  Список
+                  {t("header.list")}
                 </AppText>
               </Pressable>
               <Pressable
@@ -74,20 +90,20 @@ export const Header: React.FC<HeaderProps> = ({
                   }
                   variant="p1"
                 >
-                  Карта
+                  {t("header.map")}
                 </AppText>
               </Pressable>
             </View>
-            <Pressable onPress={openSettings}>
+            <Pressable onPress={handleSettings}>
               <SettingsIcon width={30} hanging={30} />
             </Pressable>
           </View>
           <Pressable
-            onPress={() => {}}
+            onPress={handleApplyFilters}
             style={[styles.buttonStyle, styles.filterButton]}
           >
             <AppText color={theme.colors.white} variant="p1">
-              Фильтр
+              {resetFilter ? t("header.reset") : t("header.filter")}
             </AppText>
           </Pressable>
         </View>

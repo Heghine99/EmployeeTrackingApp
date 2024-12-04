@@ -35,7 +35,7 @@ export const BottomSheetModal = forwardRef<BottomSheet, Props>(
         onClose={onClose}
         style={wrapperStyle}
       >
-        <BottomSheetView style={{ flex: 1, height: 400 }}>
+        <BottomSheetView style={{ flex: 1 }}>
           <View>{children}</View>
         </BottomSheetView>
       </BottomSheet>
