@@ -29,5 +29,12 @@
     "name": "Name",
     "position": "Position",
     "phone": "Phone"
+  },
+
+  "filter_validation": {
+    "name": "Name required",
+    "position": "Position required",
+    "phone_correct": "Please enter a valid phone number",
+    "phone_required": "Phone number is required"
   }
 }
