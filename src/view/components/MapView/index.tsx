@@ -65,31 +65,21 @@ export const MapViewComponent: React.FC<MapViewProps> = ({
               latitude: item.location.lat,
               longitude: item.location.lng,
             }}
-            icon={require("@/src/view/assets/icons/delete.svg")}
           >
             <View style={{ alignItems: "center" }}>
-              <AppText variant="p1" fontWeight="bold" color={theme.colors.blue}>
-                {item.name}
-              </AppText>
-              <EmployeeMarker />
+              <EmployeeMarker width={40} height={40} />
             </View>
           </Marker>
         ))}
 
       {route?.length && (
         <>
-          <Marker
-            icon={require("@/src/view/assets/icons/settings.svg")}
-            coordinate={route[0]}
-          >
-            <FinishFlagMarker />
+          <Marker coordinate={route[0]}>
+            <FinishFlagMarker width={40} height={40} />
           </Marker>
 
-          <Marker
-            icon={require("@/src/view/assets/icons/finishFlag.svg")}
-            coordinate={route[1]}
-          >
-            <GeolocationMarker />
+          <Marker coordinate={route[1]}>
+            <GeolocationMarker width={40} height={40} />
           </Marker>
           <MapViewDirections
             precision="high"
@@ -100,7 +90,7 @@ export const MapViewComponent: React.FC<MapViewProps> = ({
             origin={route[0]}
             mode="DRIVING"
             destination={route[1]}
-            // apikey={MAP_API_KEY}
+            apikey={MAP_API_KEY}
             onReady={handleOnReady}
           />
         </>
