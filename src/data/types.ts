@@ -1,10 +1,11 @@
 export type Route = {
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
 };
 
 export type Movement = {
   id: number;
+  date: string;
   time: string;
   route: Route[];
   duration: string;

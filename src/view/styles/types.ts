@@ -43,15 +43,6 @@ export interface Theme {
   text: Record<TextVariant, TextThemeProps>;
 }
 
-export interface InputColors {
-  background: string;
-  text: string;
-  placeholder: string;
-  border: string;
-  selectionColor?: string;
-  icon: string;
-}
-
 export type NamedStyles<T> = {
   [key in keyof T]: ViewStyle | TextStyle | ImageStyle;
 };

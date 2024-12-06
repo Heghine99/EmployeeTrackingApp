@@ -1,0 +1,40 @@
+{
+  "header": {
+    "list": "List",
+    "map": "Map",
+    "filter": "Filter",
+    "reset": "Reset",
+    "movements": "Movements"
+  },
+
+  "route_details": {
+    "duration": "Duration",
+    "distance": "Distance",
+    "average_speed": "Average speed",
+    "message": "Message",
+    "message_employee": "Good afternoon, please tell me what request number you are currently working on?",
+    "call": "Call",
+    "kilometer": "km",
+    "meter": "m",
+    "hour": "hour",
+    "minutes": "min"
+  },
+
+  "buttons": {
+    "apply": "Apply",
+    "close": "Close"
+  },
+
+  "filter_inputs": {
+    "name": "Name",
+    "position": "Position",
+    "phone": "Phone"
+  },
+
+  "filter_validation": {
+    "name": "Name required",
+    "position": "Position required",
+    "phone_correct": "Please enter a valid phone number",
+    "phone_required": "Phone number is required"
+  }
+}

@@ -11,6 +11,8 @@ type MainContainerProps = PropsWithChildren<{
   withPadding?: boolean;
   withHeader?: boolean;
   handleGoBack?: () => void;
+  handleApplyFilters?: () => void;
+  handleSettings?: () => void;
   widthGoBack?: boolean;
 }>;
 
@@ -22,6 +24,8 @@ export const MainContainer: FC<MainContainerProps> = ({
   widthGoBack,
   title,
   handleGoBack,
+  handleApplyFilters,
+  handleSettings,
 }) => {
   return (
     <View
@@ -38,6 +42,8 @@ export const MainContainer: FC<MainContainerProps> = ({
           title={title}
           widthGoBack={widthGoBack}
           handleGoBack={handleGoBack}
+          handleApplyFilters={handleApplyFilters}
+          handleSettings={handleSettings}
         />
       )}
 

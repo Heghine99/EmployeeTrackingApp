@@ -7,4 +7,6 @@ export interface MapState {
 export interface EmployeesState {
   employees: Employee[];
   selectedEmployee: Employee | null;
+  resetFilter: boolean;
+  lang: string;
 }
