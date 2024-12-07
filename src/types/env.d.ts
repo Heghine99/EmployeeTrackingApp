@@ -1,6 +1,6 @@
 declare module "react-native-config" {
   interface Env {
-    MAP_API_KEY: string;
+    API_KEY: string;
   }
 
   const Config: Env;

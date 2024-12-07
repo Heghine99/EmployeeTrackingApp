@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { theme } from "../../styles";
-import { AppText } from "@/src/uiKit/AppText";
 import MapView, { Marker } from "react-native-maps";
 import { styles } from "./styles";
 import EmployeeMarker from "@/src/view/assets/icons/avatar.svg";
@@ -9,7 +8,7 @@ import FinishFlagMarker from "@/src/view/assets/icons/finishFlag.svg";
 import GeolocationMarker from "@/src/view/assets/icons/geolocation.svg";
 import { Employee, Route } from "@/src/data/types";
 import MapViewDirections from "react-native-maps-directions";
-import { MAP_API_KEY } from "@/src/constants/env";
+import { API_KEY } from "@/src/constants/env";
 import { formatDistanceToMeters } from "@/src/utils/formatDistanceToMeter";
 import { formatDurationToHours } from "@/src/utils/formatDurationToHours";
 import { calculateAverageSpeed } from "@/src/utils/calculateAverageSpeed";
@@ -32,7 +31,6 @@ export const MapViewComponent: React.FC<MapViewProps> = ({
   setditailsRoute,
 }) => {
   const [routeData, setRouteData] = useState<RouteData | null>(null);
-  console.log(MAP_API_KEY);
 
   useEffect(() => {
     if (routeData) {
@@ -91,7 +89,7 @@ export const MapViewComponent: React.FC<MapViewProps> = ({
             origin={route[0]}
             mode="DRIVING"
             destination={route[1]}
-            apikey={MAP_API_KEY}
+            apikey={API_KEY}
             onReady={handleOnReady}
           />
         </>

@@ -88,6 +88,7 @@ android {
 
     namespace 'com.anonymous.EmployeeTrackingApp'
     defaultConfig {
+        manifestPlaceholders = [ API_KEY:project.env.get("API_KEY") ] 
         applicationId 'com.anonymous.EmployeeTrackingApp'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
