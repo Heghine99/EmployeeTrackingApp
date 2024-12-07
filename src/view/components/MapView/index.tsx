@@ -32,6 +32,7 @@ export const MapViewComponent: React.FC<MapViewProps> = ({
   setditailsRoute,
 }) => {
   const [routeData, setRouteData] = useState<RouteData | null>(null);
+  console.log(MAP_API_KEY);
 
   useEffect(() => {
     if (routeData) {
